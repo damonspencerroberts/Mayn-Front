@@ -12,7 +12,7 @@ function Login(props) {
       password,
       // The page where you want to redirect to after a
       // successful login
-    //   callbackUrl: `${window.location.origin}`,
+      callbackUrl: `${window.location.origin}/profile`,
     });
   };
   const onSubmit = (d) => handleLogin(d);

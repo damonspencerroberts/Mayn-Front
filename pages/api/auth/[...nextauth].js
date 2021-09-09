@@ -21,10 +21,8 @@ const providers = [
         }
       );
 
-      console.log(user);
-
       if (user) {
-        return user;
+        return user.data;
       } else {
         return null;
       }
@@ -34,17 +32,18 @@ const providers = [
 
 const callbacks = {
   // Getting the JWT token from API response
+  async session(session, user) {
+    session.accessToken = user.accessToken;
+    console.log(session);
+    console.log(user);
+    return Promise.resolve(session);
+  },
   async jwt(token, user) {
     if (user) {
       token.accessToken = user.token;
     }
 
     return token;
-  },
-
-  async session(session, token) {
-    session.accessToken = token.accessToken;
-    return session;
   },
 };
 
