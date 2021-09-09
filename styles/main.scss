@@ -1,0 +1,117 @@
+@import "./general/colors/colors";
+@import "./general/fonts/fonts";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Font Sizes */
+
+.font-size-16 {
+    font-size: 16px;
+}
+
+.font-size-20 {
+    font-size: 20px;
+}
+
+.font-size-24 {
+    font-size: 24px;
+}
+
+.font-size-28 {
+    font-size: 28px;
+}
+
+.font-size-32 {
+    font-size: 32px;
+}
+
+/* Colors */
+
+.main {
+    color: $main;
+}
+
+.main-2 {
+    color: $main-2;
+}
+
+.light {
+    color: $light;
+}
+
+.grey {
+    color: $grey;
+}
+
+.dark {
+    color: $dark;
+}
+
+/* Bg Colors */
+
+.bg-main {
+    background: $main;
+}
+
+.bg-main-2 {
+    background: $main-2;
+}
+
+.bg-light {
+    background: $light;
+}
+
+.bg-grey {
+    background: $grey;
+}
+
+.bg-dark {
+    background: $dark;
+}
+
+/* Fonts */
+
+.main-font {
+    font-family: $main-font;
+}
+
+.sub-font {
+    font-family: $sub-font;
+}
+
+/* Font Weights */
+
+.wt-300 {
+    font-weight: 300;
+}
+
+.wt-400 {
+    font-weight: 400;
+}
+
+.wt-500 {
+    font-weight: 500;
+}
+
+.wt-600 {
+    font-weight: 600;
+}
+
+.wt-700 {
+    font-weight: 700;
+}
