@@ -1,0 +1,24 @@
+@import "../general/globals.scss";
+
+.container {
+    background: $light;
+}
+
+.HomeImageContainer {
+  height: 500px;
+  width: 80%;
+  position: relative;
+  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.329), $main),
+    url('https://res.cloudinary.com/dymuj0sqw/image/upload/v1631209590/photo-1610133541510-c2a517187ed8_yjzsvd.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: $border-radius-3;
+  box-shadow: $box-shadow-3;
+}
+
+@media screen and (max-width: 600px) {
+  .HomeImageContainer {
+    height: 300px;
+  }
+}
