@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@artsy/fresnel": "^1.9.0",
+    "axios": "^0.21.4",
     "bootstrap": "^5.1.1",
     "classnames": "^2.3.1",
     "next": "11.1.2",
+    "next-auth": "^3.29.0",
     "react": "17.0.2",
     "react-bootstrap": "^1.6.3",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.15.2",
     "sass": "^1.39.0"
   },
   "devDependencies": {

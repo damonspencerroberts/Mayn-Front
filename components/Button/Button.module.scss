@@ -11,6 +11,12 @@
   font-weight: 400;
   border: 0;
   font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: $light;
+  }
 }
 
 .Secondary {
@@ -22,4 +28,18 @@
   font-weight: 400;
   border: 0;
   font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: $main;
+  }
+}
+
+.Primary,
+.Secondary {
+  &:hover {
+    transition: opacity .4s;
+    opacity: 0.9;
+  }
 }

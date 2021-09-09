@@ -9,7 +9,7 @@ function Button({ classnames, variant = 'primary', children }) {
     [styles.Secondary]: variant === 'secondary',
     [classnames]: !!classnames,
   });
-  return <button className={className}>{children}</button>;
+  return <a className={className}>{children}</a>;
 }
 
 Button.propTypes = {

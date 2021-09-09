@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import LargeLogo from '../Logo/Large';
 import { Container } from 'react-bootstrap';
@@ -17,8 +18,16 @@ function Navbar(props) {
         </div>
       </div>
       <div className="d-flex align-items-center justify-content-end">
-        <Button variant="secondary">Login</Button>
-        <Button variant="primary">Sign Up</Button>
+        <Link href="/login">
+          <a className="text-decoration-none">
+            <Button variant="secondary">Login</Button>
+          </a>
+        </Link>
+        <Link href="/">
+          <a className="text-decoration-none">
+            <Button variant="primary">Sign Up</Button>
+          </a>
+        </Link>
       </div>
     </Container>
   );
