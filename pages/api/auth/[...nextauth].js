@@ -23,11 +23,13 @@ const authOptions = (req, res) => {
               },
             }
           );
+          const { headers } = user;
+          const { authorization } = headers;
           const { status, response } = user.data;
           console.log('[userresponse]', response);
 
           if (status === 200) {
-            return response;
+            return { ...response, auth: authorization };
           } else {
             return null;
           }
@@ -36,15 +38,25 @@ const authOptions = (req, res) => {
     ],
     callbacks: {
       session: async (session, user) => {
-        session.accessToken = user.accessToken;
-        return Promise.resolve(session);
+        const modifySession = { ...session, user };
+        return Promise.resolve(modifySession);
       },
-    },
-    jwt: async (token, user, account, profile) => {
-      if (user) {
-        token.accessToken = user.token;
-      }
-      return token;
+      jwt: async (token, user) => {
+        if (user) {
+          token.accessToken = user.token;
+          token.email = user.email;
+          token.username = user.username;
+          token.description = user.description;
+          token.age = user.age;
+          token.auth = user.auth.split(' ')[1];
+          token.avatar = user.avatar;
+        }
+        // console.log('[token]', token);
+        // console.log('[user]', user);
+        // console.log('[account]', account);
+        // console.log('[profile]', profile);
+        return Promise.resolve(token);
+      },
     },
   };
 };

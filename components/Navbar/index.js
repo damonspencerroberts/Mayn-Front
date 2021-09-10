@@ -9,13 +9,15 @@ import Avatar from '../Avatar';
 
 function Navbar(props) {
   const [session, loading] = useSession();
-  console.log(session);
-
   return (
     <Container className="d-flex align-items-center justify-content-between py-5">
       <div className="d-flex align-items-center">
         <div className="d-flex align-items-center justify-content-center">
-          <LargeLogo className="mr-3" />
+          <Link href="/">
+            <a>
+              <LargeLogo className="mr-3" />
+            </a>
+          </Link>
         </div>
         <div className="d-flex align-items-center justify-content-between">
           <div className="dark main-font font-size-20 px-3">Features</div>
@@ -29,7 +31,7 @@ function Navbar(props) {
           </Button>
           <Link href="/profile">
             <a className="text-decoration-none">
-              <Avatar imageSrc="https://source.unsplash.com/random" />
+              <Avatar imageSrc={session?.user.avatar} />
             </a>
           </Link>
         </div>
