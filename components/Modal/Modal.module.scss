@@ -1,0 +1,8 @@
+@import '../../styles/general/globals.scss';
+
+.Modal {
+  padding: 20px;
+  box-shadow: $box-shadow-3;
+  background: $light;
+  border-radius: $border-radius-3;
+}
