@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Button from '../components/Button';
 import { Col, Container, Row } from 'react-bootstrap';
 import Header from '../components/Header';
+import Avatar from '../components/Avatar';
 
 export default function Home() {
   return (

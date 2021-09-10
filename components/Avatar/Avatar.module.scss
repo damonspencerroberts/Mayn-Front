@@ -1,0 +1,29 @@
+@import '../../styles/general/globals.scss';
+
+.Avatar {
+  position: relative;
+  padding: 5px;
+  border-radius: 100%;
+  box-shadow: $box-shadow-2;
+  border: 1px solid $main;
+  background: $light;
+}
+
+.Image {
+  border-radius: 100%;
+}
+
+.Small {
+  height: 48px;
+  width: 48px;
+}
+
+.Medium {
+  height: 96px;
+  width: 96px;
+}
+
+.Large {
+  height: 192px;
+  width: 192px;
+}
