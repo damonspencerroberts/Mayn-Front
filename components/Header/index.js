@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 function Header({ classnames, children }) {
-  return <div className={cx('main wt-700 sub-font font-size-64', classnames)}>{children}</div>;
+  return <div className={cx('main wt-700 sub-font', classnames)}>{children}</div>;
 }
 
 Header.propTypes = {

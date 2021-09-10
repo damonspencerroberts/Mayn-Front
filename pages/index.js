@@ -22,7 +22,7 @@ export default function Home() {
           <Row>
             <Col md className="d-flex justify-content-center">
               <div className="d-flex flex-column" style={{ width: '80%' }}>
-                <Header classnames="d-flex align-items-center justify-content-center">
+                <Header classnames="d-flex align-items-center justify-content-center font-size-64">
                   Meeting made simple.
                 </Header>
                 <div className="d-flex align-items-start flex-column py-2 grey font-size-24 wt-300 main-font">

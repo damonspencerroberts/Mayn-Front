@@ -1,0 +1,26 @@
+@import '../../styles/general/globals.scss';
+
+.Input {
+  border: 0;
+  font-family: $sub-font;
+  font-size: 20px;
+  padding: 6px;
+  padding-left: 10px;
+  border-bottom: 3px solid $main;
+  background: transparent;
+
+  &::placeholder {
+    font-family: $sub-font;
+    font-size: 20px;
+  }
+
+  &:active {
+    outline: none;
+    border-bottom: 3px solid $green-1;
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom: 3px solid $green-1;
+  }
+}

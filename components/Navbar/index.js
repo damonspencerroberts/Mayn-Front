@@ -8,6 +8,7 @@ import Button from '../Button';
 import Avatar from '../Avatar';
 import Modal from '../Modal';
 import Login from '../Forms/Login';
+import Header from '../Header';
 
 function Navbar(props) {
   const [session, loading] = useSession();
@@ -18,7 +19,24 @@ function Navbar(props) {
   return (
     <React.Fragment>
       <Modal show={isShowSignIn} centered onHide={handleHide}>
-        <Login />
+        <div className="d-flex align-items-center justify-content-center">
+          <Header classnames="font-size-32">Login to your account</Header>
+        </div>
+        <div>
+          <Login />
+        </div>
+        <div className="d-flex align-items-center justify-content-center">
+          <span className="grey wt-300 main-font font-size-16">
+            Don&apos;t have an account yet?
+          </span>
+          <Link href="/">
+            <a className="text-decoration-none">
+              <span role="button" className="dark wt-600 main-font font-size-16 ms-2">
+                Sign Up
+              </span>
+            </a>
+          </Link>
+        </div>
       </Modal>
       <Container className="d-flex align-items-center justify-content-between py-5">
         <div className="d-flex align-items-center">

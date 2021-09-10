@@ -5,6 +5,7 @@ import styles from './Button.module.scss';
 
 function Button({ classnames, variant = 'primary', children, ...props }) {
   const className = cx({
+    [styles.Button]: true,
     [styles.Primary]: variant === 'primary',
     [styles.Secondary]: variant === 'secondary',
     [classnames]: !!classnames,

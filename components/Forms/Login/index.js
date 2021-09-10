@@ -2,6 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { signIn } from 'next-auth/client';
+import Input from '../../Input';
+import Button from '../../Button';
 
 function Login(props) {
   const { register, handleSubmit } = useForm();
@@ -17,12 +19,12 @@ function Login(props) {
   };
   const onSubmit = (d) => handleLogin(d);
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>Email</label>
-      <input {...register('email')} />
-      <label>Password</label>
-      <input {...register('password')} />
-      <input type="submit" value="submit" />
+    <form className="d-flex flex-column justify-content-between p-3">
+      <Input classnames="m-3" placeholder="Email" {...register('email')} />
+      <Input classnames="m-3" placeholder="Password" {...register('password')} />
+      <Button classnames="m-3" onClick={handleSubmit(onSubmit)}>
+        Login
+      </Button>
     </form>
   );
 }
