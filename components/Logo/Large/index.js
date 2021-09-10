@@ -7,7 +7,7 @@ function LargeLogo(props) {
   return (
     <div className={styles.ImageContainer}>
       <Image
-        src="https://res.cloudinary.com/dymuj0sqw/image/upload/c_fill,h_144,w_376/v1631204428/1_ldlezd.png"
+        src="https://res.cloudinary.com/dymuj0sqw/image/upload/c_fill,h_144,w_376/v1631294188/output-onlinepngtools_s85pf0.png"
         layout="fill"
       />
     </div>
