@@ -29,7 +29,7 @@ function Navbar(props) {
           <span className="grey wt-300 main-font font-size-16">
             Don&apos;t have an account yet?
           </span>
-          <Link href="/signup">
+          <Link href={{ pathname: '/signup', query: { step: 1 } }}>
             <a className="text-decoration-none">
               <span
                 role="button"
@@ -72,7 +72,7 @@ function Navbar(props) {
             <Button variant="secondary" onClick={() => handleShow()}>
               Login
             </Button>
-            <Link href="/signup">
+            <Link href={{ pathname: '/signup', query: { step: 1 } }}>
               <a className="text-decoration-none">
                 <Button variant="primary">Sign up</Button>
               </a>

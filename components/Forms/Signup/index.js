@@ -36,7 +36,7 @@ function SignUp(props) {
       signIn('credentials', {
         email,
         password,
-        callbackUrl: `${window.location.origin}/profile`,
+        callbackUrl: `${window.location.origin}/signup?step=2`,
       });
     }
     setIsLoading(false);

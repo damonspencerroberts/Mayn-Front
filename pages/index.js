@@ -33,7 +33,7 @@ export default function Home() {
                   <p className="dark">Mayn makes meeting new people simple.</p>
                 </div>
                 <div className="d-flex align-items-center">
-                  <Link href="/signup">
+                  <Link href={{ pathname: '/signup', query: { step: 1 } }}>
                     <a className="text-decoration-none">
                       <Button>Get Started</Button>
                     </a>
