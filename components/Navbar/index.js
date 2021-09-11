@@ -29,9 +29,13 @@ function Navbar(props) {
           <span className="grey wt-300 main-font font-size-16">
             Don&apos;t have an account yet?
           </span>
-          <Link href="/">
+          <Link href="/signup">
             <a className="text-decoration-none">
-              <span role="button" className="dark wt-600 main-font font-size-16 ms-2">
+              <span
+                role="button"
+                className="dark wt-600 main-font font-size-16 ms-2"
+                onClick={() => setIsShowSignIn(false)}
+              >
                 Sign Up
               </span>
             </a>
@@ -68,7 +72,7 @@ function Navbar(props) {
             <Button variant="secondary" onClick={() => handleShow()}>
               Login
             </Button>
-            <Link href="/">
+            <Link href="/signup">
               <a className="text-decoration-none">
                 <Button variant="primary">Sign Up</Button>
               </a>

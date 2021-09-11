@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/pages/Home.module.scss';
 import Navbar from '../components/Navbar';
 import Button from '../components/Button';
@@ -32,7 +33,11 @@ export default function Home() {
                   <p className="dark">Mayn makes meeting new people simple.</p>
                 </div>
                 <div className="d-flex align-items-center">
-                  <Button>Get Started</Button>
+                  <Link href="/signup">
+                    <a className="text-decoration-none">
+                      <Button>Get Started</Button>
+                    </a>
+                  </Link>
                   <div className="ms-4 font-size-24 main wt-300 main-font">It&apos;s Free</div>
                 </div>
               </div>
