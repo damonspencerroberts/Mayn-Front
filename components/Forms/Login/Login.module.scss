@@ -1,0 +1,23 @@
+@import '../../../styles/general/globals.scss';
+
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: $border-radius-2;
+  box-shadow: $box-shadow-2;
+  background: $main;
+  color: $light;
+  font-family: $main-font;
+  letter-spacing: $border-radius-1;
+  font-weight: 400;
+  border: 0;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: $light;
+  }
+}

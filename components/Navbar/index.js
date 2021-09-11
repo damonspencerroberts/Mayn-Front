@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import LargeLogo from '../Logo/Large';
-import { Container } from 'react-bootstrap';
+import { Container, Modal as BootstrapModal } from 'react-bootstrap';
 import { useSession, signOut } from 'next-auth/client';
 import Button from '../Button';
 import Avatar from '../Avatar';
@@ -18,7 +18,7 @@ function Navbar(props) {
 
   return (
     <React.Fragment>
-      <Modal show={isShowSignIn} centered onHide={handleHide}>
+      <Modal show={isShowSignIn} centered onHide={handleHide} fullscreen="md-down">
         <div className="d-flex align-items-center justify-content-center">
           <Header classnames="font-size-32">Login to your account</Header>
         </div>

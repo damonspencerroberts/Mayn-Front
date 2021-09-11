@@ -2,12 +2,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { signIn } from 'next-auth/client';
+import cx from 'classnames';
 import Input from '../../Input';
 import Button from '../../Button';
+import styles from './Login.module.scss';
 
 function Login(props) {
   const { register, handleSubmit } = useForm();
   const handleLogin = (d) => {
+    console.log(d);
     const { email, password } = d;
     signIn('credentials', {
       email,
@@ -17,14 +20,22 @@ function Login(props) {
       callbackUrl: `${window.location.origin}/profile`,
     });
   };
+  
   const onSubmit = (d) => handleLogin(d);
   return (
-    <form className="d-flex flex-column justify-content-between p-3">
-      <Input classnames="m-3" placeholder="Email" {...register('email')} />
-      <Input classnames="m-3" placeholder="Password" {...register('password')} />
-      <Button classnames="m-3" onClick={handleSubmit(onSubmit)}>
-        Login
-      </Button>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="d-flex flex-column justify-content-between p-3"
+    >
+      <Input classnames="m-3" placeholder="Email" register={register} namespace="email" />
+      <Input
+        type="password"
+        classnames="m-3"
+        placeholder="Password"
+        register={register}
+        namespace="password"
+      />
+      <input className={cx('m-3', styles.Button)} type="submit" value="Login" />
     </form>
   );
 }
