@@ -74,7 +74,7 @@ function Navbar(props) {
             </Button>
             <Link href="/signup">
               <a className="text-decoration-none">
-                <Button variant="primary">Sign Up</Button>
+                <Button variant="primary">Sign up</Button>
               </a>
             </Link>
           </div>
