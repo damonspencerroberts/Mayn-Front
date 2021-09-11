@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { signIn } from 'next-auth/client';
 import cx from 'classnames';
 import Input from '../../Input';
+import InputButton from '../../Input/Button';
 import Button from '../../Button';
-import styles from './Login.module.scss';
 
 function Login(props) {
   const { register, handleSubmit } = useForm();
@@ -20,7 +20,7 @@ function Login(props) {
       callbackUrl: `${window.location.origin}/profile`,
     });
   };
-  
+
   const onSubmit = (d) => handleLogin(d);
   return (
     <form
@@ -35,7 +35,7 @@ function Login(props) {
         register={register}
         namespace="password"
       />
-      <input className={cx('m-3', styles.Button)} type="submit" value="Login" />
+      <InputButton classnames="m-3" type="submit" value="Login" />
     </form>
   );
 }

@@ -19,5 +19,7 @@
 
   &:hover {
     color: $light;
+    transition: background .4s;
+    background: $main-3;
   }
 }
