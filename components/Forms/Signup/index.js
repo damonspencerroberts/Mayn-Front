@@ -1,17 +1,45 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import Input from '../../Input';
+import { signIn } from 'next-auth/client';
 import InputButton from '../../Input/Button';
+import axios from 'axios';
 
 function SignUp(props) {
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoginError, setIsLoginError] = useState(false);
+  const [loginErrorMessage, setLoginErrorMessage] = useState('');
   const { register, handleSubmit } = useForm();
   const onSubmit = (d) => handleLogin(d);
-  const handleLogin = (d) => {
+  const handleLogin = async (d) => {
+    const { username, email, password } = d;
     setIsLoading(true);
-    console.log(d);
+    const body = {
+      user: { username, email, password },
+    };
+    const headers = {
+      'accept': '*/*',
+      'Content-Type': 'application/json',
+    };
+    const userExists = await axios.post('https://bk-mayn.herokuapp.com/api/user_exists', body, {
+      headers,
+    });
+    if (userExists.data.status === 0 || userExists.data.status === 1) {
+      setIsLoginError(true);
+      setLoginErrorMessage(userExists.data.message);
+    } else {
+      setIsLoginError(false);
+      setLoginErrorMessage('');
+      await axios.post('https://bk-mayn.herokuapp.com/api/signup', body, { headers });
+      signIn('credentials', {
+        email,
+        password,
+        callbackUrl: `${window.location.origin}/profile`,
+      });
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -43,6 +71,7 @@ function SignUp(props) {
               register={register}
               namespace="password"
             />
+            {isLoginError && <p className="mx-3 p-0 red-1 sub-font">*{loginErrorMessage}</p>}
             <InputButton classnames="mx-3 my-1" type="submit" value="Sign up today!" />
           </form>
         </React.Fragment>
