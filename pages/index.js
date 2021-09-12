@@ -72,6 +72,7 @@ export async function getServerSideProps({ req }) {
       Authorization: `Bearer ${session?.user?.auth}`,
     },
   };
+  // Test Comment
   const user = await fetch(`https://bk-mayn.herokuapp.com/api/users/${session?.user?.sub}`, obj)
     .then((res) => res.json())
     .then((res) => {
