@@ -1,18 +1,40 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Spinner } from 'react-bootstrap';
+import { useSession } from 'next-auth/client';
 import Input from '../../Input';
 import InputButton from '../../Input/Button';
 import Label from '../../Label';
+import apiPost from '../../../services/apiPost';
 
-function AgeForm({ userId }) {
+function AgeForm(props) {
+  const [session] = useSession();
+  const router = useRouter();
   const { register, handleSubmit } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = (d) => handleForm(d);
-  const handleForm = (d) => {
+  const handleForm = async (d) => {
+    setIsLoading(true);
     const { age } = d;
-    console.log(age, userId);
+    const body = {
+      id: session?.user?.sub,
+      age,
+    };
+    const headers = {
+      Authorization: `Bearer ${session?.user?.auth}`,
+    };
+    const res = await apiPost('/update_user_age', body, headers);
+    if (res?.data.status === 1) {
+      router.push({
+        pathname: '/signup',
+        query: { step: '3' },
+      });
+    } else {
+      alert('There was an error. We apologize for the inconvenience.');
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -34,7 +56,7 @@ function AgeForm({ userId }) {
             <Input
               type="text"
               classnames="m-3"
-              placeholder="23"
+              placeholder="Your age..."
               register={register}
               namespace="age"
             />
@@ -46,8 +68,6 @@ function AgeForm({ userId }) {
   );
 }
 
-AgeForm.propTypes = {
-  userId: PropTypes.number,
-};
+AgeForm.propTypes = {};
 
 export default AgeForm;
