@@ -63,7 +63,12 @@ function Navbar(props) {
             </Button>
             <Link href="/profile">
               <a className="text-decoration-none">
-                <Avatar imageSrc={session?.user.avatar} />
+                <Avatar
+                  imageSrc={
+                    session?.user?.avatar ||
+                    'https://res.cloudinary.com/dymuj0sqw/image/upload/v1631448627/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper_mcxg0i.png'
+                  }
+                />
               </a>
             </Link>
           </div>

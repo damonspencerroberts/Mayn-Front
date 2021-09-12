@@ -24,6 +24,7 @@ function SignUp(props) {
           <CustomSignup />
         </MainSignUpContainer>
       )}
+      {step === '2' && <p>Signed up!</p>}
     </Container>
   );
 }
