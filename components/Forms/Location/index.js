@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { useSession } from 'next-auth/client';
 import { Spinner } from 'react-bootstrap';
-import Label from '../../Label';
-import TextArea from '../../Input/TextArea';
+import { useSession } from 'next-auth/client';
+import Input from '../../Input';
 import InputButton from '../../Input/Button';
+import Label from '../../Label';
 import apiPost from '../../../services/apiPost';
 
-function DescriptionForm(props) {
+function LocationForm(props) {
   const [session] = useSession();
   const router = useRouter();
   const { register, handleSubmit } = useForm();
@@ -17,25 +17,26 @@ function DescriptionForm(props) {
   const onSubmit = (d) => handleForm(d);
   const handleForm = async (d) => {
     setIsLoading(true);
-    const { description } = d;
+    const { location } = d;
     const body = {
       id: session?.user?.sub,
-      description,
+      location,
     };
     const headers = {
       Authorization: `Bearer ${session?.user?.auth}`,
     };
-    const res = await apiPost('/update_user_description', body, headers);
+    const res = await apiPost('/update_user_location', body, headers);
     if (res?.data.status === 1) {
       router.push({
         pathname: '/signup',
-        query: { step: '4' },
+        query: { step: '6' },
       });
     } else {
       alert('There was an error. We apologize for the inconvenience.');
       setIsLoading(false);
     }
   };
+
   return (
     <React.Fragment>
       {isLoading ? (
@@ -51,13 +52,13 @@ function DescriptionForm(props) {
             onSubmit={handleSubmit(onSubmit)}
             className="d-flex flex-column justify-content-between p-3"
           >
-            <Label classnames="mx-3">Let&apos;s learn more about you.</Label>
-            <TextArea
-              type="textarea"
+            <Label classnames="mx-3">How old are you?</Label>
+            <Input
+              type="text"
               classnames="m-3"
-              placeholder="Write a short bio..."
+              placeholder="Your location..."
               register={register}
-              namespace="description"
+              namespace="location"
             />
             <InputButton classnames="mx-3 my-1" type="submit" value="Next Question" />
           </form>
@@ -67,6 +68,6 @@ function DescriptionForm(props) {
   );
 }
 
-DescriptionForm.propTypes = {};
+LocationForm.propTypes = {};
 
-export default DescriptionForm;
+export default LocationForm;

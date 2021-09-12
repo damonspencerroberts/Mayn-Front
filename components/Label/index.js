@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 function Label({ classnames, children, ...props }) {
   return (
-    <label className={cx('sub-font font-size-20 wt-600 dark', classnames)} {...props}>
+    <label className={cx('sub-font font-size-16 wt-600 dark', classnames)} {...props}>
       {children}
     </label>
   );
