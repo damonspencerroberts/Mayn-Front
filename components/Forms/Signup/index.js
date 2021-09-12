@@ -27,6 +27,7 @@ function SignUp(props) {
       headers,
     });
     if (userExists.data.status === 0 || userExists.data.status === 1) {
+      setIsLoading(false);
       setIsLoginError(true);
       setLoginErrorMessage(userExists.data.message);
     } else {
@@ -39,7 +40,6 @@ function SignUp(props) {
         callbackUrl: `${window.location.origin}/signup?step=2`,
       });
     }
-    setIsLoading(false);
   };
 
   return (
