@@ -120,7 +120,7 @@ function Avatar() {
             </div>
           </div>
           <Button classnames="m-3" onClick={handleSubmitImage}>
-            View your profile
+            Upload your image and view your profile
           </Button>
         </React.Fragment>
       )}

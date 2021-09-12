@@ -55,12 +55,6 @@ function SignUp(props) {
             onSubmit={handleSubmit(onSubmit)}
             className="d-flex flex-column justify-content-between p-3"
           >
-            <Input
-              classnames="m-3"
-              placeholder="Username"
-              register={register}
-              namespace="username"
-            />
             <Input classnames="m-3" placeholder="Email" register={register} namespace="email" />
             <Input
               type="password"
@@ -68,6 +62,12 @@ function SignUp(props) {
               placeholder="Password"
               register={register}
               namespace="password"
+            />
+            <Input
+              classnames="m-3"
+              placeholder="Username"
+              register={register}
+              namespace="username"
             />
             {isLoginError && <p className="mx-3 p-0 red-1 sub-font">*{loginErrorMessage}</p>}
             <InputButton classnames="mx-3 my-1" type="submit" value="Sign up today!" />
