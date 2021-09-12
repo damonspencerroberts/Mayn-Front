@@ -1,0 +1,10 @@
+@import '../../../styles/general/globals.scss';
+
+.InputContainer {
+  position: relative;
+  padding: 20px;
+  box-shadow: $box-shadow-3;
+  min-width: 200px;
+  border-bottom: 3px solid $main;
+  cursor: pointer;
+}

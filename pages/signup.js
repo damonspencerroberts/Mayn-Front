@@ -8,10 +8,9 @@ import DescriptionForm from '../components/Forms/Description';
 import AgeForm from '../components/Forms/Age';
 import FavoritesForm from '../components/Forms/Favorites';
 import LocationForm from '../components/Forms/Location';
+import AvatarForm from '../components/Forms/Avatar';
 import { useSession } from 'next-auth/client';
 import Navbar from '../components/Navbar';
-import Header from '../components/Header';
-import styles from '../styles/pages/Signup.module.scss';
 import Step from '../components/Step';
 
 function SignUp(props) {
@@ -43,7 +42,7 @@ function SignUp(props) {
             paragraph="Feel free to skip the question however a more complete profile leads to a better experience."
           >
             <div className="flex-center m-3">
-              <Step>Step 2/6</Step>
+              <Step>Question 2/6</Step>
             </div>
             <AgeForm />
           </MainSignUpContainer>
@@ -56,7 +55,7 @@ function SignUp(props) {
             paragraph="Feel free to skip the question however a more complete profile leads to a better experience."
           >
             <div className="flex-center m-3">
-              <Step>Step 3/6</Step>
+              <Step>Question 3/6</Step>
             </div>
             <DescriptionForm />
           </MainSignUpContainer>
@@ -69,7 +68,7 @@ function SignUp(props) {
             paragraph="Feel free to skip the question however a more complete profile leads to a better experience."
           >
             <div className="flex-center m-3">
-              <Step>Step 4/6</Step>
+              <Step>Question 4/6</Step>
             </div>
             <FavoritesForm />
           </MainSignUpContainer>
@@ -82,9 +81,22 @@ function SignUp(props) {
             paragraph="Feel free to skip the question however a more complete profile leads to a better experience."
           >
             <div className="flex-center m-3">
-              <Step>Step 5/6</Step>
+              <Step>Question 5/6</Step>
             </div>
             <LocationForm />
+          </MainSignUpContainer>
+        </React.Fragment>
+      )}
+      {step === '6' && (
+        <React.Fragment>
+          <MainSignUpContainer
+            header="We would love some more information on you to complete your profile"
+            paragraph="Feel free to skip the question however a more complete profile leads to a better experience."
+          >
+            <div className="flex-center m-3">
+              <Step>Question 6/6</Step>
+            </div>
+            <AvatarForm />
           </MainSignUpContainer>
         </React.Fragment>
       )}
