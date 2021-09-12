@@ -181,3 +181,28 @@ a {
 .border-0 {
   border: 0;
 }
+
+.geoapify-autocomplete-input {
+  border: 0 !important;
+  font-family: $sub-font !important;
+  font-size: 20px !important;
+  padding: 6px !important;
+  padding-left: 10px !important;
+  border-bottom: 3px solid $main !important;
+  background: transparent !important;
+
+  &::placeholder {
+    font-family: $sub-font !important;
+    font-size: 20px !important;
+  }
+
+  &:active {
+    outline: none !important;
+    border-bottom: 3px solid $green-1 !important;
+  }
+
+  &:focus {
+    outline: none !important;
+    border-bottom: 3px solid $green-1 !important;
+  }
+}

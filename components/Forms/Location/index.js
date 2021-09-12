@@ -1,30 +1,39 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
 import { Spinner } from 'react-bootstrap';
 import { useSession } from 'next-auth/client';
-import Input from '../../Input';
-import InputButton from '../../Input/Button';
 import Label from '../../Label';
+import Button from '../../Button';
 import apiPost from '../../../services/apiPost';
+import {
+  GeoapifyGeocoderAutocomplete,
+  GeoapifyContext,
+} from '@geoapify/react-geocoder-autocomplete';
+import '@geoapify/geocoder-autocomplete/styles/minimal.css';
 
 function LocationForm(props) {
+  const [location, setLocation] = useState({});
+  const onPlaceSelect = (value) => {
+    const { properties } = value;
+    const { country, city, country_code, lat, lon } = properties;
+    const body = { country, city, country_code, lat, lon };
+    setLocation(body);
+  };
+
   const [session] = useSession();
   const router = useRouter();
-  const { register, handleSubmit } = useForm();
   const [isLoading, setIsLoading] = useState(false);
-  const onSubmit = (d) => handleForm(d);
   const handleForm = async (d) => {
     setIsLoading(true);
-    const { location } = d;
     const body = {
       id: session?.user?.sub,
-      location,
+      ...location,
     };
     const headers = {
       Authorization: `Bearer ${session?.user?.auth}`,
     };
+    console.log(body);
     const res = await apiPost('/update_user_location', body, headers);
     if (res?.data.status === 1) {
       router.push({
@@ -36,7 +45,6 @@ function LocationForm(props) {
       setIsLoading(false);
     }
   };
-
   return (
     <React.Fragment>
       {isLoading ? (
@@ -48,20 +56,21 @@ function LocationForm(props) {
         </div>
       ) : (
         <React.Fragment>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="d-flex flex-column justify-content-between p-3"
-          >
-            <Label classnames="mx-3">How old are you?</Label>
-            <Input
-              type="text"
-              classnames="m-3"
-              placeholder="Your location..."
-              register={register}
-              namespace="location"
-            />
-            <InputButton classnames="mx-3 my-1" type="submit" value="Next Question" />
-          </form>
+          <Label classnames="mx-3">Where are you located?</Label>
+          <div className="m-3">
+            <GeoapifyContext apiKey="42f93daa6b8541d08bf679dbba3aeef4">
+              <GeoapifyGeocoderAutocomplete
+                placeholder="Paris, France"
+                type="city"
+                lang="en"
+                limit={5}
+                placeSelect={onPlaceSelect}
+              />
+            </GeoapifyContext>
+          </div>
+          <Button classnames="mx-3 my-1" onClick={handleForm}>
+            Next Question
+          </Button>
         </React.Fragment>
       )}
     </React.Fragment>
