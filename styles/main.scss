@@ -19,6 +19,18 @@ a {
   box-sizing: border-box;
 }
 
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* Font Sizes */
 
 .font-size-16 {
@@ -69,6 +81,10 @@ a {
 
 .red-1 {
   color: $red-1;
+}
+
+.green-1 {
+  color: $green-1;
 }
 
 /* Bg Colors */
