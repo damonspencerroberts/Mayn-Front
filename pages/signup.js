@@ -42,7 +42,7 @@ function SignUp(props) {
             header="We would love some more information on you to complete your profile"
             paragraph="Feel free to skip the question however a more complete profile leads to a better experience."
           >
-            <AgeForm />
+            <AgeForm userId={session?.user?.sub} />
           </MainSignUpContainer>
         </React.Fragment>
       )}

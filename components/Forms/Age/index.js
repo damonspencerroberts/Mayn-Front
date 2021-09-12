@@ -6,12 +6,13 @@ import Input from '../../Input';
 import InputButton from '../../Input/Button';
 import Label from '../../Label';
 
-function AgeForm(props) {
+function AgeForm({ userId }) {
   const { register, handleSubmit } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = (d) => handleForm(d);
   const handleForm = (d) => {
-    console.log(d);
+    const { age } = d;
+    console.log(age, userId);
   };
 
   return (
@@ -45,6 +46,8 @@ function AgeForm(props) {
   );
 }
 
-AgeForm.propTypes = {};
+AgeForm.propTypes = {
+  userId: PropTypes.number,
+};
 
 export default AgeForm;

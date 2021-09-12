@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import Input from '../../Input';
 import { signIn } from 'next-auth/client';
 import InputButton from '../../Input/Button';
-import axios from 'axios';
+import apiPost from '../../../services/apiPost';
 
 function SignUp(props) {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,9 +23,7 @@ function SignUp(props) {
       'accept': '*/*',
       'Content-Type': 'application/json',
     };
-    const userExists = await axios.post('https://bk-mayn.herokuapp.com/api/user_exists', body, {
-      headers,
-    });
+    const userExists = await apiPost('/user_exists', body);
     if (userExists.data.status === 0 || userExists.data.status === 1) {
       setIsLoading(false);
       setIsLoginError(true);
@@ -33,7 +31,7 @@ function SignUp(props) {
     } else {
       setIsLoginError(false);
       setLoginErrorMessage('');
-      await axios.post('https://bk-mayn.herokuapp.com/api/signup', body, { headers });
+      await apiPost('/signup', body);
       signIn('credentials', {
         email,
         password,

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import apiPost from '../../../services/apiPost';
 import PropTypes from 'prop-types';
 import { signIn } from 'next-auth/client';
 import axios from 'axios';
@@ -23,13 +24,8 @@ function Login(props) {
         email: email,
       },
     };
-    const headers = {
-      'accept': '*/*',
-      'Content-Type': 'application/json',
-    };
-    const user = await axios.post('https://bk-mayn.herokuapp.com/api/user_sessions', body, {
-      headers,
-    });
+    const user = await apiPost('/user_sessions', body);
+
     if (user.data.status === 1) {
       setIsLoginError(false);
       setLoginErrorMessage('');
@@ -39,10 +35,10 @@ function Login(props) {
         callbackUrl: `${window.location.origin}/profile`,
       });
     } else {
+      setIsLoading(false);
       setIsLoginError(true);
       setLoginErrorMessage(user.data.message);
     }
-    setIsLoading(false);
   };
 
   const onSubmit = (d) => handleLogin(d);
