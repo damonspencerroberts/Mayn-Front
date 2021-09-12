@@ -19,6 +19,18 @@ a {
   box-sizing: border-box;
 }
 
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* Font Sizes */
 
 .font-size-16 {
@@ -69,6 +81,10 @@ a {
 
 .red-1 {
   color: $red-1;
+}
+
+.green-1 {
+  color: $green-1;
 }
 
 /* Bg Colors */
@@ -164,4 +180,29 @@ a {
 
 .border-0 {
   border: 0;
+}
+
+.geoapify-autocomplete-input {
+  border: 0 !important;
+  font-family: $sub-font !important;
+  font-size: 20px !important;
+  padding: 6px !important;
+  padding-left: 10px !important;
+  border-bottom: 3px solid $main !important;
+  background: transparent !important;
+
+  &::placeholder {
+    font-family: $sub-font !important;
+    font-size: 20px !important;
+  }
+
+  &:active {
+    outline: none !important;
+    border-bottom: 3px solid $green-1 !important;
+  }
+
+  &:focus {
+    outline: none !important;
+    border-bottom: 3px solid $green-1 !important;
+  }
 }

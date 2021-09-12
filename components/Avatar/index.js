@@ -4,7 +4,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import styles from './Avatar.module.scss';
 
-function Avatar({ classnames, imageSrc, variant = 'small' }) {
+function Avatar({ classnames, imageSrc = '', variant = 'small' }) {
   const className = cx({
     [styles.Avatar]: true,
     [styles.Small]: variant === 'small',

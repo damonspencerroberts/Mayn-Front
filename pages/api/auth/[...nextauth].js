@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 import axios from 'axios';
+import apiPost from '../../../services/apiPost';
 
 const authOptions = (req, res) => {
   return {
@@ -8,21 +9,13 @@ const authOptions = (req, res) => {
       Providers.Credentials({
         name: 'Credentials',
         authorize: async (credentials) => {
-          const user = await axios.post(
-            'https://bk-mayn.herokuapp.com/api/login',
-            {
-              user: {
-                password: credentials.password,
-                email: credentials.email,
-              },
+          const body = {
+            user: {
+              password: credentials.password,
+              email: credentials.email,
             },
-            {
-              headers: {
-                'accept': '*/*',
-                'Content-Type': 'application/json',
-              },
-            }
-          );
+          };
+          const user = await apiPost('/login', body);
           const { headers } = user;
           const { authorization } = headers;
           const { status, response } = user.data;

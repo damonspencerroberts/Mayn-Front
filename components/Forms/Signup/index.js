@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import Input from '../../Input';
 import { signIn } from 'next-auth/client';
 import InputButton from '../../Input/Button';
-import axios from 'axios';
+import apiPost from '../../../services/apiPost';
 
 function SignUp(props) {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,23 +23,21 @@ function SignUp(props) {
       'accept': '*/*',
       'Content-Type': 'application/json',
     };
-    const userExists = await axios.post('https://bk-mayn.herokuapp.com/api/user_exists', body, {
-      headers,
-    });
+    const userExists = await apiPost('/user_exists', body);
     if (userExists.data.status === 0 || userExists.data.status === 1) {
+      setIsLoading(false);
       setIsLoginError(true);
       setLoginErrorMessage(userExists.data.message);
     } else {
       setIsLoginError(false);
       setLoginErrorMessage('');
-      await axios.post('https://bk-mayn.herokuapp.com/api/signup', body, { headers });
+      await apiPost('/signup', body);
       signIn('credentials', {
         email,
         password,
-        callbackUrl: `${window.location.origin}/profile`,
+        callbackUrl: `${window.location.origin}/signup?step=2`,
       });
     }
-    setIsLoading(false);
   };
 
   return (
@@ -57,12 +55,6 @@ function SignUp(props) {
             onSubmit={handleSubmit(onSubmit)}
             className="d-flex flex-column justify-content-between p-3"
           >
-            <Input
-              classnames="m-3"
-              placeholder="Username"
-              register={register}
-              namespace="username"
-            />
             <Input classnames="m-3" placeholder="Email" register={register} namespace="email" />
             <Input
               type="password"
@@ -70,6 +62,12 @@ function SignUp(props) {
               placeholder="Password"
               register={register}
               namespace="password"
+            />
+            <Input
+              classnames="m-3"
+              placeholder="Username"
+              register={register}
+              namespace="username"
             />
             {isLoginError && <p className="mx-3 p-0 red-1 sub-font">*{loginErrorMessage}</p>}
             <InputButton classnames="mx-3 my-1" type="submit" value="Sign up today!" />

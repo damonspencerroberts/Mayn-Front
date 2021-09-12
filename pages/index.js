@@ -1,14 +1,17 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { getSession } from 'next-auth/client';
 import styles from '../styles/pages/Home.module.scss';
 import Navbar from '../components/Navbar';
 import Button from '../components/Button';
 import { Col, Container, Row } from 'react-bootstrap';
 import Header from '../components/Header';
 import Avatar from '../components/Avatar';
+import apiPost from '../services/apiPost';
 
-export default function Home() {
+export default function Home({ user }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -18,7 +21,7 @@ export default function Home() {
       </Head>
 
       <Container className="p-3">
-        <Navbar />
+        <Navbar profileImg={user?.response?.avatar} />
         <Container fluid>
           <Row>
             <Col md className="d-flex justify-content-center">
@@ -33,7 +36,7 @@ export default function Home() {
                   <p className="dark">Mayn makes meeting new people simple.</p>
                 </div>
                 <div className="d-flex align-items-center">
-                  <Link href="/signup">
+                  <Link href={{ pathname: '/signup', query: { step: 1 } }}>
                     <a className="text-decoration-none">
                       <Button>Get Started</Button>
                     </a>
@@ -52,4 +55,31 @@ export default function Home() {
       <footer className={styles.footer}></footer>
     </div>
   );
+}
+
+Home.propTypes = {
+  user: PropTypes.object,
+};
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+  if (!session) {
+    return { props: {} };
+  }
+  const obj = {
+    method: 'get',
+    headers: {
+      Authorization: `Bearer ${session?.user?.auth}`,
+    },
+  };
+  const user = await fetch(`https://bk-mayn.herokuapp.com/api/users/${session?.user?.sub}`, obj)
+    .then((res) => res.json())
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => console.log(err));
+
+  return {
+    props: { user }, // will be passed to the page component as props
+  };
 }

@@ -10,7 +10,7 @@ import Modal from '../Modal';
 import Login from '../Forms/Login';
 import Header from '../Header';
 
-function Navbar(props) {
+function Navbar({ profileImg }) {
   const [session, loading] = useSession();
   const [isShowSignIn, setIsShowSignIn] = useState(false);
   const handleHide = () => setIsShowSignIn(false);
@@ -29,7 +29,7 @@ function Navbar(props) {
           <span className="grey wt-300 main-font font-size-16">
             Don&apos;t have an account yet?
           </span>
-          <Link href="/signup">
+          <Link href={{ pathname: '/signup', query: { step: 1 } }}>
             <a className="text-decoration-none">
               <span
                 role="button"
@@ -63,7 +63,12 @@ function Navbar(props) {
             </Button>
             <Link href="/profile">
               <a className="text-decoration-none">
-                <Avatar imageSrc={session?.user.avatar} />
+                <Avatar
+                  imageSrc={
+                    profileImg ||
+                    'https://res.cloudinary.com/dymuj0sqw/image/upload/v1631448627/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper_mcxg0i.png'
+                  }
+                />
               </a>
             </Link>
           </div>
@@ -72,7 +77,7 @@ function Navbar(props) {
             <Button variant="secondary" onClick={() => handleShow()}>
               Login
             </Button>
-            <Link href="/signup">
+            <Link href={{ pathname: '/signup', query: { step: 1 } }}>
               <a className="text-decoration-none">
                 <Button variant="primary">Sign up</Button>
               </a>
@@ -84,6 +89,8 @@ function Navbar(props) {
   );
 }
 
-Navbar.propTypes = {};
+Navbar.propTypes = {
+  profileImg: PropTypes.string,
+};
 
 export default Navbar;
