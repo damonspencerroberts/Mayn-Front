@@ -3,13 +3,22 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import styles from './Large.module.scss';
 
-function LargeLogo(props) {
+function LargeLogo({ isWhite = false }) {
   return (
     <div className={styles.ImageContainer}>
-      <Image
-        src="https://res.cloudinary.com/dymuj0sqw/image/upload/c_fill,h_144,w_376/v1631294188/output-onlinepngtools_s85pf0.png"
-        layout="fill"
-      />
+      {isWhite ? (
+        <Image
+          src="https://res.cloudinary.com/dymuj0sqw/image/upload/c_fill,h_144,w_376/v1631561362/output-onlinepngtools_3_vjylvj.png"
+          layout="fill"
+          alt="logo"
+        />
+      ) : (
+        <Image
+          src="https://res.cloudinary.com/dymuj0sqw/image/upload/c_fill,h_144,w_376/v1631294188/output-onlinepngtools_s85pf0.png"
+          layout="fill"
+          alt="logo"
+        />
+      )}
     </div>
   );
 }

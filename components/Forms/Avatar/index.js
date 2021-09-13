@@ -44,7 +44,7 @@ function Avatar() {
     const res = await apiPost('/update_user_avatar', body, headers);
     if (res?.data.status === 1) {
       router.push({
-        pathname: '/profile',
+        pathname: '/lobby/profile',
       });
     } else {
       alert('There was an error. We apologize for the inconvenience.');
