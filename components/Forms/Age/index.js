@@ -29,7 +29,7 @@ function AgeForm(props) {
     if (res?.data.status === 1) {
       router.push({
         pathname: '/signup',
-        query: { step: '3' },
+        query: { step: '4' },
       });
     } else {
       alert('There was an error. We apologize for the inconvenience.');

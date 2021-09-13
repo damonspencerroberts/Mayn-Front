@@ -7,7 +7,7 @@ function Main({ header, paragraph, children }) {
   return (
     <div className="d-flex flex-column align-items-center">
       <Header classnames="font-size-32">{header}</Header>
-      <p className="sub-font wt-300 grey font-size-20">{paragraph}</p>
+      <p className="sub-font wt-300 grey font-size-16">{paragraph}</p>
       <div className={styles.FormContainer}>{children}</div>
     </div>
   );

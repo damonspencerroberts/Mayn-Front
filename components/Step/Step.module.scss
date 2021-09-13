@@ -1,15 +1,16 @@
 @import "../../styles/general/globals.scss";
 
 .Step {
-    border: 1px solid $grey;
-    border-radius: $border-radius-2;
-    box-shadow: $box-shadow-1;
-    font-family: $sub-font;
-    font-weight: 600;
+    border: 1px solid $main;
+    border-radius: $border-radius-1;
+    box-shadow: $box-shadow-2;
+    font-family: $main-font;
+    font-weight: 400;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px 8px;
+    color: $grey;
+    padding: 6px 10px;
     width: max-content;
     font-size: 20px;
 }

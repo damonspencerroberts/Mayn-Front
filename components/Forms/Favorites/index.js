@@ -36,7 +36,7 @@ function Favorites(props) {
     if (res?.data.status === 1) {
       router.push({
         pathname: '/signup',
-        query: { step: '5' },
+        query: { step: '6' },
       });
     } else {
       alert('There was an error. We apologize for the inconvenience.');
